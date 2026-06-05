@@ -1,0 +1,27 @@
+{
+    "name": "puredazzle/wp-lite-youtube-embed",
+    "description": "A WordPress plugin for displaying YouTube videos in a lightweight and responsive way.",
+    "license": "MIT",
+    "type": "wordpress-muplugin",
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "youtube",
+        "video",
+        "embed"
+    ],
+    "authors": [
+        {
+            "name": "Chris Andersson",
+            "homepage": "https://github.com/puredazzle"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist"
+    }
+}
