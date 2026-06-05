@@ -98,7 +98,7 @@ class Plugin
         exit;
     }
 
-    public function add_div_around_youtube_embeds(string $html, object $data, string $url): string
+    public function add_div_around_youtube_embeds(string $html, array|object $data, string $url): string
     {
         if (strpos($url, 'youtube.com') !== false || strpos($url, 'youtu.be') !== false) {
             if (! is_admin()) {
