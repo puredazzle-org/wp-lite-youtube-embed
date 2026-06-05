@@ -118,7 +118,7 @@ class Plugin
 
     public function enqueue_assets(): void
     {
-        $base_url = content_url('mu-plugins/wp-lite-yt-embed/build/');
+        $base_url = content_url('mu-plugins/wp-lite-youtube-embed/build/');
 
         if (
             wp_get_environment_type() === 'local' &&
