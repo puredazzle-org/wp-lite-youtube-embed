@@ -118,7 +118,7 @@ class Plugin
 
     public function enqueue_assets(): void
     {
-        $manifest_path = __DIR__ . '/build/.vite/manifest.json';
+        $base_url = content_url('mu-plugins/wp-lite-yt-embed/build/');
 
         if (
             wp_get_environment_type() === 'local' &&
@@ -126,21 +126,9 @@ class Plugin
         ) {
             wp_enqueue_script_module('vite', 'http://localhost:5174/@vite/client');
             wp_enqueue_script_module('lite-youtube-embed', 'http://localhost:5174/resources/js/index.js', ['vite']);
-        } elseif (file_exists($manifest_path)) {
-            $manifest = json_decode(file_get_contents($manifest_path), true);
-            $base_url = plugin_dir_url(__DIR__ . '/wp-lite-youtube-embed.php') . 'build/';
-
-            wp_enqueue_script_module(
-                'lite-youtube-embed',
-                $base_url . $manifest['resources/js/index.js']['file'],
-            );
-
-            if (!empty($manifest['resources/js/index.js']['css'])) {
-                wp_enqueue_style(
-                    'lite-youtube-embed',
-                    $base_url . $manifest['resources/js/index.js']['css'][0],
-                );
-            }
+        } elseif (file_exists(__DIR__ . '/build/index.js')) {
+            wp_enqueue_script_module('lite-youtube-embed', $base_url . 'index.js');
+            wp_enqueue_style('lite-youtube-embed', $base_url . 'index.css');
         }
     }
 }
