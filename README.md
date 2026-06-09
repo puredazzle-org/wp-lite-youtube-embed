@@ -5,7 +5,7 @@ A WordPress mu-plugin that replaces standard YouTube oEmbed iframes with the lig
 ## Requirements
 
 - PHP 8.2+
-- WordPress 6.1+
+- WordPress 6.5+
 
 ## Installation
 
