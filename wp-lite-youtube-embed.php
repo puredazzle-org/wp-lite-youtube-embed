@@ -8,7 +8,7 @@
  * Text Domain: lite-youtube-embed
  * Version: 1.1.0
  * Requires PHP: 8.2
- * Requires at least: 6.1
+ * Requires at least: 6.5
  */
 
 declare(strict_types=1);
