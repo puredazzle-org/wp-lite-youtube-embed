@@ -6,7 +6,7 @@
  * Author: Pure Dazzle
  * Author URI: https://puredazzle.se/
  * Text Domain: lite-youtube-embed
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires PHP: 8.2
  * Requires at least: 6.5
  */
@@ -19,6 +19,8 @@ defined('ABSPATH') || exit;
 
 class Plugin
 {
+    private const VERSION = '1.1.1';
+
     public function __construct()
     {
         add_action('wp_footer', [$this, 'enqueue_assets']);
@@ -133,8 +135,8 @@ class Plugin
             wp_enqueue_script_module('vite', 'http://localhost:5174/@vite/client');
             wp_enqueue_script_module('lite-youtube-embed', 'http://localhost:5174/resources/js/index.js', ['vite']);
         } elseif (file_exists(__DIR__ . '/build/index.js')) {
-            wp_enqueue_script_module('lite-youtube-embed', plugin_dir_url(__FILE__) . 'build/index.js', version: '1.1.0');
-            wp_enqueue_style('lite-youtube-embed', plugin_dir_url(__FILE__) . 'build/index.css', ver: '1.1.0');
+            wp_enqueue_script_module('lite-youtube-embed', plugin_dir_url(__FILE__) . 'build/index.js', version: self::VERSION);
+            wp_enqueue_style('lite-youtube-embed', plugin_dir_url(__FILE__) . 'build/index.css', ver: self::VERSION);
         }
     }
 
@@ -144,13 +146,13 @@ class Plugin
         wp_enqueue_script(
             'lite-youtube-embed',
             plugin_dir_url(__FILE__) . 'build/index.js',
-            ver: '1.1.0'
+            ver: self::VERSION
         );
 
         wp_enqueue_style(
             'lite-youtube-embed',
             plugin_dir_url(__FILE__) . 'build/index.css',
-            ver: '1.1.0',
+            ver: self::VERSION,
         );
     }
 
