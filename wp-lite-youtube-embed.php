@@ -6,7 +6,7 @@
  * Author: Pure Dazzle
  * Author URI: https://puredazzle.se/
  * Text Domain: lite-youtube-embed
- * Version: 1.1.1
+ * Version: 1.1.2
  * Requires PHP: 8.2
  * Requires at least: 6.5
  */
@@ -19,11 +19,10 @@ defined('ABSPATH') || exit;
 
 class Plugin
 {
-    private const VERSION = '1.1.1';
+    private const VERSION = '1.1.2';
 
     public function __construct()
     {
-        add_action('wp_footer', [$this, 'enqueue_assets']);
         add_action('admin_menu', [$this, 'register_settings_page']);
         add_action('admin_post_lite_youtube_clear_oembed_cache', [$this, 'handle_clear_cache']);
         add_filter(
@@ -33,9 +32,10 @@ class Plugin
             4,
         );
 
+        add_action('wp_footer', [$this, 'enqueue_assets']);
         add_action('enqueue_block_assets', [$this, 'enqueue_block_assets']);
-        add_filter('mce_external_plugins', [$this, 'register_tinymce_plugin']);
         add_action('admin_init', [$this, 'enqueue_admin_assets']);
+        add_filter('mce_external_plugins', [$this, 'register_tinymce_plugin']);
     }
 
     public function register_settings_page(): void
@@ -143,6 +143,10 @@ class Plugin
 
     public function enqueue_block_assets(): void
     {
+        if (! is_admin()) {
+            return;
+        }
+
         wp_enqueue_script(
             'lite-youtube-embed',
             plugin_dir_url(__FILE__) . 'build/index.js',
